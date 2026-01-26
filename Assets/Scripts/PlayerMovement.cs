@@ -7,12 +7,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float controlSpeed;
     [SerializeField] float xClampPos;
     [SerializeField] float yClampPos;
+
+    [SerializeField] float controlRotationFactor = 20f;
+
     Vector2 movement;
 
     // Update is called once per frame
     void Update()
     {
         ProcessTranlation();
+        ProcessRotation();
     }   
 
     public void OnMove(InputValue value)
@@ -32,4 +36,10 @@ public class PlayerMovement : MonoBehaviour
         transform.localPosition = new Vector3(xClamped,yClamped,0f);
     }
     // added comment
+
+    void ProcessRotation()
+    {
+        Quaternion rotation = Quaternion.Euler(-controlRotationFactor * movement.y, 0f, -controlRotationFactor*movement.x);
+        transform.localRotation = rotation;
+    }
 }
