@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerWeapon : MonoBehaviour
 {
 
-    [SerializeField] GameObject laser;
+    [SerializeField] GameObject[] lasers;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     bool isFiring = false;
     void Start()
@@ -30,8 +30,11 @@ public class PlayerWeapon : MonoBehaviour
 
     private void PlayLaser()
     {
-        var emissionModule = laser.GetComponent<ParticleSystem>().emission;
-        emissionModule.enabled = isFiring;
+        foreach (GameObject laser in lasers)
+        {
+            var emission = laser.GetComponent<ParticleSystem>().emission;
+            emission.enabled = isFiring;
+        }
 
     }
 }
