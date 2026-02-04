@@ -5,17 +5,19 @@ public class PlayerWeapon : MonoBehaviour
 {
 
     [SerializeField] GameObject[] lasers;
+    [SerializeField] RectTransform crossHair;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     bool isFiring = false;
     void Start()
     {
-       
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         FiringSequence();
+        MoveCrossHair();
     }
 
     public void OnFire(InputValue value)
@@ -36,5 +38,10 @@ public class PlayerWeapon : MonoBehaviour
             emission.enabled = isFiring;
         }
 
+    }
+
+    void MoveCrossHair()
+    {
+        crossHair.position = Input.mousePosition;
     }
 }
