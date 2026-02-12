@@ -60,7 +60,7 @@ public class PlayerWeapon : MonoBehaviour
     {
         foreach(GameObject laser in lasers)
         {
-            Vector3 fireDirection = targetPoint.position - laser.transform.position; // Calculates distance between two points
+            Vector3 fireDirection = targetPoint.position - this.gameObject.transform.position; // Calculates distance between two points
             Quaternion rotateToTarget = Quaternion.LookRotation(fireDirection); // Rotates laser to that distance diff
             laser.transform.rotation = rotateToTarget; // Set rotation
         }
